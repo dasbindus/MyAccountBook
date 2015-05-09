@@ -38,12 +38,12 @@
 
                 <ImageView
                     android:id="@+id/expenditurePic"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:onClick="onExpendClick"
                     android:scaleType="matrix"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/income" />
 
                 <TextView
                     android:id="@+id/expenditureTx"
@@ -72,7 +72,7 @@
                     android:clickable="true"
                     android:onClick="onIncomeClick"
                     android:scaleType="matrix"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/income" />
 
                 <TextView
                     android:id="@+id/incomeTx"
@@ -101,7 +101,7 @@
                     android:clickable="true"
                     android:onClick="onQueryClick"
                     android:scaleType="matrix"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/income" />
 
                 <TextView
                     android:id="@+id/queryTx"
