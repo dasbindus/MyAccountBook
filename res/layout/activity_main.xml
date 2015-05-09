@@ -6,23 +6,13 @@
     android:background="#eee"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/vPagerLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
+    <FrameLayout
+        android:id="@+id/my_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_bottom"
         android:orientation="vertical" >
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vPager"
-            android:layout_width="wrap_content"
-            android:layout_height="0dip"
-            android:layout_gravity="center"
-            android:layout_weight="1.0"
-            android:background="#000000"
-            android:flipInterval="30"
-            android:persistentDrawingCache="animation" />
-    </LinearLayout>
+    </FrameLayout>
 
     <RelativeLayout
         android:id="@+id/main_bottom"
@@ -43,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:onClick="onExpendClick"
                 android:orientation="vertical" >
 
                 <ImageView
@@ -50,6 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
+                    android:onClick="onExpendClick"
                     android:scaleType="matrix"
                     android:src="@drawable/ic_launcher" />
 
@@ -57,7 +49,9 @@
                     android:id="@+id/expenditureTx"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
                     android:gravity="center"
+                    android:onClick="onExpendClick"
                     android:text="支出"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -68,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:onClick="onIncomeClick"
                 android:orientation="vertical" >
 
                 <ImageView
@@ -75,6 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
+                    android:onClick="onIncomeClick"
                     android:scaleType="matrix"
                     android:src="@drawable/ic_launcher" />
 
@@ -82,7 +78,9 @@
                     android:id="@+id/incomeTx"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
                     android:gravity="center"
+                    android:onClick="onIncomeClick"
                     android:text="收入"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -93,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:onClick="onQueryClick"
                 android:orientation="vertical" >
 
                 <ImageView
@@ -100,6 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
+                    android:onClick="onQueryClick"
                     android:scaleType="matrix"
                     android:src="@drawable/ic_launcher" />
 
@@ -107,7 +107,9 @@
                     android:id="@+id/queryTx"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
                     android:gravity="center"
+                    android:onClick="onQueryClick"
                     android:text="查看"
                     android:textColor="#000000"
                     android:textSize="12sp" />
