@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="background_tab_pressed">#8833B5E5</color>
+    <color name="background_menu_light_pressed">#20ffffff</color>
+    <color name="background_menu_light_normal">#00000000</color>
+    <color name="background_menu_dark_pressed">#20000000</color>
+    <color name="background_menu_dark_normal">#00000000</color>
+    <color name="lightgreen">#ff00aa00</color>
+    <color name="stronggreen">#ff008000</color>
+    <color name="lightblue">#ff87ceeb</color>
+    <color name="strongblue">#ff7ec0ee</color>
+    <color name="pink">#ffffc0cb</color>
+    <color name="red">#ffff0000</color>
+    <color name="gridbak">#eee0e0e0</color>
+    
+</resources>

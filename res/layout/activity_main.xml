@@ -39,7 +39,7 @@
                 <ImageView
                     android:id="@+id/expenditurePic"
                     android:layout_width="40dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:clickable="true"
                     android:onClick="onExpendClick"
                     android:scaleType="matrix"
@@ -47,7 +47,7 @@
 
                 <TextView
                     android:id="@+id/expenditureTx"
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:gravity="center"
@@ -67,8 +67,8 @@
 
                 <ImageView
                     android:id="@+id/incomePic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:clickable="true"
                     android:onClick="onIncomeClick"
                     android:scaleType="matrix"
@@ -76,7 +76,7 @@
 
                 <TextView
                     android:id="@+id/incomeTx"
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:gravity="center"
@@ -96,8 +96,8 @@
 
                 <ImageView
                     android:id="@+id/queryPic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:clickable="true"
                     android:onClick="onQueryClick"
                     android:scaleType="matrix"
@@ -105,7 +105,7 @@
 
                 <TextView
                     android:id="@+id/queryTx"
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:gravity="center"

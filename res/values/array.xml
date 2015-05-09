@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="spinnername_expend">
+        <item>正餐</item>
+        <item>零食</item>
+        <item>请客</item>
+        <item>生活用品</item>
+        <item>学习用品</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="spinnername_income">
+        <item>工资</item>
+        <item>补贴</item>
+        <item>奖学金</item>
+        <item>捡到的钱</item>
+        <item>其他</item>
+    </string-array>
+
+</resources>

@@ -68,11 +68,11 @@ public class MainActivity extends FragmentActivity {
 			fragmentTransaction.commit();
 
 			mExpendPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.ic_launcher));
+					R.drawable.income));
 			mIncomePic.setImageDrawable(getResources().getDrawable(
-					R.drawable.ic_launcher));
+					R.drawable.income));
 			mQueryPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.ic_launcher));
+					R.drawable.income));
 		}
 
 	}
@@ -91,11 +91,11 @@ public class MainActivity extends FragmentActivity {
 			fragmentTransaction.commit();
 
 			mExpendPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.ic_launcher));
+					R.drawable.income));
 			mIncomePic.setImageDrawable(getResources().getDrawable(
-					R.drawable.ic_launcher));
+					R.drawable.income));
 			mQueryPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.ic_launcher));
+					R.drawable.income));
 		}
 
 	}
@@ -114,11 +114,11 @@ public class MainActivity extends FragmentActivity {
 			fragmentTransaction.commit();
 
 			mExpendPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.ic_launcher));
+					R.drawable.income));
 			mIncomePic.setImageDrawable(getResources().getDrawable(
-					R.drawable.ic_launcher));
+					R.drawable.income));
 			mQueryPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.ic_launcher));
+					R.drawable.income));
 		}
 	}
 
