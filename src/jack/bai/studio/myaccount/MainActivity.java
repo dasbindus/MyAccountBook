@@ -16,13 +16,16 @@ public class MainActivity extends FragmentActivity {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 
+	//----------Fragment切换----------------//
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager mFragmentManager;
 
+	//----------TAB的头标---------//
 	private ImageView mExpendPic, mIncomePic, mQueryPic;
 	private TextView t1, t2, t3;
 	private int currentIndex = 0;
 
+	//----------三个TAB对应的Fragment-------//
 	private ExpenditureFrag mExpenditureFrag = new ExpenditureFrag();
 	private IncomeFrag mIncomeFrag = new IncomeFrag();
 	private QueryFrag mQueryFrag = new QueryFrag();
