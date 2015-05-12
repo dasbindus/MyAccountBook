@@ -50,7 +50,7 @@ public final class R {
     public static final class id {
         public static final int action_settings=0x7f0a0022;
         public static final int afternoonRB=0x7f0a0014;
-        public static final int dataTx=0x7f0a0010;
+        public static final int dateTx=0x7f0a0010;
         public static final int eveningRB=0x7f0a0015;
         public static final int expenditurePic=0x7f0a0003;
         public static final int expenditureTx=0x7f0a0004;

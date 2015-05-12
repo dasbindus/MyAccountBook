@@ -19,6 +19,7 @@ public class IncomeFrag extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.income_frag, container, false);
+		
 		mSpinner = (Spinner) view.findViewById(R.id.spinner2);
 		String[] mSpinnerItems = getResources().getStringArray(
 				R.array.spinnername_income);

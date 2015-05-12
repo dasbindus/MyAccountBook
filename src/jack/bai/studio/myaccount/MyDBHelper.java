@@ -11,7 +11,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 	final String CREATE_EXTEND_TABLE_SQL = "create table expend_book(_id integer primary key autoincrement, "
 			+ "ex_type TEXT, "
 			+ "ex_remarks TEXT, "
-			+ "ex_money REAL, "
+			+ "ex_money TEXT, "
 			+ "ex_date TEXT, " 
 			+ "ex_time TEXT)";
 
