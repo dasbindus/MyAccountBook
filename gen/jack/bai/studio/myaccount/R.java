@@ -48,7 +48,7 @@ public final class R {
         public static final int query=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0022;
+        public static final int action_settings=0x7f0a0024;
         public static final int afternoonRB=0x7f0a0014;
         public static final int dateTx=0x7f0a0010;
         public static final int eveningRB=0x7f0a0015;
@@ -65,6 +65,8 @@ public final class R {
         public static final int moneyTx=0x7f0a000e;
         public static final int morningRB=0x7f0a0013;
         public static final int my_frame=0x7f0a0001;
+        public static final int queryBtn=0x7f0a0023;
+        public static final int queryDateTx=0x7f0a0022;
         public static final int queryPic=0x7f0a0007;
         public static final int queryTx=0x7f0a0008;
         public static final int radioGroup1=0x7f0a0012;
