@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="日期查询（格式xxxx-xx-xx）" />
+        android:text="日期查询（xxxx-xx-xx）"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/queryDateTx"
@@ -28,5 +29,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="查询" />
+
+    <Button
+        android:id="@+id/queryAllBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="查询所有记录" />
+
+    <TextView
+        android:id="@+id/queryResultTx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
 
 </LinearLayout>

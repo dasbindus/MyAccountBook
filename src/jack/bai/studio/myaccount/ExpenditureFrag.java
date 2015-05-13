@@ -136,4 +136,13 @@ public class ExpenditureFrag extends Fragment {
 		// 执行插入语句
 		db.execSQL("insert into expend_book values(null, ?, ?, ?, ?, ?)", data);
 	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		// 退出时关闭dbHelper中的SQLiteDatabase
+		if (dbHelper != null) {
+			dbHelper.close();
+		}
+	}
 }
