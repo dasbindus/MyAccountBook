@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -50,18 +51,22 @@ public class QueryFrag extends Fragment {
 						"select * from expend_book where ex_date=?",
 						new String[] { date_key });
 				ArrayList<Map<String, String>> result = convertCursor2List(cursor);
+				// 将查询的数据放入Bundle
+				Bundle queryResult = new Bundle();
+				queryResult.putSerializable("result", result);
+
 				if (result.size() != 0) {
-					String resultStr = null;
-					for (int i = 0; i < result.size(); i++) {
-						resultStr = result.get(i).get("ex_money");
-						q_resultTx.append(resultStr + '\n');
-					}
+					// 跳转QueryResultActivity
+					Intent intent = new Intent();
+					intent.putExtras(queryResult);
+					intent.setClass(getActivity(), QueryResultActivity.class);
+					startActivity(intent);
+
 					Log.e("查询结果：", " result大小：" + result.size());
 				} else {
 					Toast.makeText(getActivity(), "查询为空！", Toast.LENGTH_SHORT)
 							.show();
 				}
-
 			}
 		});
 
@@ -72,12 +77,17 @@ public class QueryFrag extends Fragment {
 				Cursor cursor = dbHelper.getReadableDatabase().rawQuery(
 						"select * from expend_book", null);
 				ArrayList<Map<String, String>> result = convertCursor2List(cursor);
+				// 将查询的数据放入Bundle
+				Bundle queryResult = new Bundle();
+				queryResult.putSerializable("result", result);
+
 				if (result.size() != 0) {
-					String resultStr = null;
-					for (int i = 0; i < result.size(); i++) {
-						resultStr = result.get(i).get("ex_money");
-						q_resultTx.append(resultStr + '\n');
-					}
+					// 跳转QueryResultActivity
+					Intent intent = new Intent();
+					intent.putExtras(queryResult);
+					intent.setClass(getActivity(), QueryResultActivity.class);
+					startActivity(intent);
+
 					Log.e("查询全部结果：", " result大小：" + result.size());
 				} else {
 					Toast.makeText(getActivity(), "查询为空！", Toast.LENGTH_SHORT)
