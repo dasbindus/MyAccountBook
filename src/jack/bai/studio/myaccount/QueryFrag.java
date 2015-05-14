@@ -51,9 +51,21 @@ public class QueryFrag extends Fragment {
 						"select * from expend_book where ex_date=?",
 						new String[] { date_key });
 				ArrayList<Map<String, String>> result = convertCursor2List(cursor);
+
+				// 查询求和的cursor
+				Cursor cursor2 = dbHelper.getReadableDatabase().rawQuery(
+						SQLAttributes.SQL_SUM_MONEY_BY_DATE,
+						new String[] { date_key });
+				String sumMoneyByDate = "0";
+				while (cursor2.moveToNext()) {
+					sumMoneyByDate = cursor2.getString(0);
+				}
+				Log.e("test", "求和为：" + sumMoneyByDate);
+
 				// 将查询的数据放入Bundle
 				Bundle queryResult = new Bundle();
 				queryResult.putSerializable("result", result);
+				queryResult.putString("sum", sumMoneyByDate);
 
 				if (result.size() != 0) {
 					// 跳转QueryResultActivity
@@ -62,7 +74,7 @@ public class QueryFrag extends Fragment {
 					intent.setClass(getActivity(), QueryResultActivity.class);
 					startActivity(intent);
 
-					Log.e("查询结果：", " result大小：" + result.size());
+					Log.e("查询结果：", "result大小：" + result.size());
 				} else {
 					Toast.makeText(getActivity(), "查询为空！", Toast.LENGTH_SHORT)
 							.show();
@@ -77,9 +89,18 @@ public class QueryFrag extends Fragment {
 				Cursor cursor = dbHelper.getReadableDatabase().rawQuery(
 						"select * from expend_book", null);
 				ArrayList<Map<String, String>> result = convertCursor2List(cursor);
+
+				Cursor cursor2 = dbHelper.getReadableDatabase().rawQuery(
+						SQLAttributes.SQL_SUM_MONEY_ALL, null);
+				String sumAll = "0";
+				while (cursor2.moveToNext()) {
+					sumAll = cursor2.getString(0);
+				}
+
 				// 将查询的数据放入Bundle
 				Bundle queryResult = new Bundle();
 				queryResult.putSerializable("result", result);
+				queryResult.putString("sum", sumAll);
 
 				if (result.size() != 0) {
 					// 跳转QueryResultActivity
@@ -88,7 +109,7 @@ public class QueryFrag extends Fragment {
 					intent.setClass(getActivity(), QueryResultActivity.class);
 					startActivity(intent);
 
-					Log.e("查询全部结果：", " result大小：" + result.size());
+					Log.e("查询全部结果：", "result大小：" + result.size());
 				} else {
 					Toast.makeText(getActivity(), "查询为空！", Toast.LENGTH_SHORT)
 							.show();
