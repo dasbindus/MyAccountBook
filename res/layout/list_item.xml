@@ -4,11 +4,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/qr_id"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="id=1000" />
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/title_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="id: " />
+
+        <TextView
+            android:id="@+id/qr_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1000" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,10 +29,17 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/qr_type"
+            android:id="@+id/title_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:text="类型:" />
+
+        <TextView
+            android:id="@+id/qr_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="生活用品" />
 
         <TextView
@@ -36,10 +56,17 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/qr_date"
+            android:id="@+id/title_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:text="时间:" />
+
+        <TextView
+            android:id="@+id/qr_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="2015-05-13" />
 
         <TextView
@@ -50,11 +77,31 @@
             android:text="早上" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/qr_money"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="10000" />
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/title_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="金额:" />
+
+        <TextView
+            android:id="@+id/qr_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="10000" />
+
+        <TextView
+            android:id="@+id/money_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="元" />
+    </LinearLayout>
 
 </LinearLayout>

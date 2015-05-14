@@ -1,6 +1,7 @@
 package jack.bai.studio.myaccount;
 
 import android.app.ActionBar;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -16,16 +17,15 @@ public class MainActivity extends FragmentActivity {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 
-	//----------Fragment切换----------------//
+	// ----------Fragment切换----------------//
 	private FragmentTransaction fragmentTransaction;
 	private FragmentManager mFragmentManager;
 
-	//----------TAB的头标---------//
-	private ImageView mExpendPic, mIncomePic, mQueryPic;
-	private TextView t1, t2, t3;
+	// ----------TAB的头标---------//
+	private TextView mExpend, mExpendEn, mIncome, mIncomeEn, mQuery, mQueryEn;
 	private int currentIndex = 0;
 
-	//----------三个TAB对应的Fragment-------//
+	// ----------三个TAB对应的Fragment-------//
 	private ExpenditureFrag mExpenditureFrag = new ExpenditureFrag();
 	private IncomeFrag mIncomeFrag = new IncomeFrag();
 	private QueryFrag mQueryFrag = new QueryFrag();
@@ -39,9 +39,13 @@ public class MainActivity extends FragmentActivity {
 
 		mFragmentManager = getSupportFragmentManager();
 
-		mExpendPic = (ImageView) findViewById(R.id.expenditurePic);
-		mIncomePic = (ImageView) findViewById(R.id.incomePic);
-		mQueryPic = (ImageView) findViewById(R.id.queryPic);
+		mExpend = (TextView) findViewById(R.id.expenditureTx);
+		mIncome = (TextView) findViewById(R.id.incomeTx);
+		mQuery = (TextView) findViewById(R.id.queryTx);
+
+		mExpendEn = (TextView) findViewById(R.id.expenditureTxEn);
+		mIncomeEn = (TextView) findViewById(R.id.incomeTxEn);
+		mQueryEn = (TextView) findViewById(R.id.queryTxEn);
 
 		View frameView = findViewById(R.id.my_frame);
 		onExpendClick(frameView);
@@ -70,12 +74,13 @@ public class MainActivity extends FragmentActivity {
 			fragmentTransaction.replace(R.id.my_frame, mExpenditureFrag);
 			fragmentTransaction.commit();
 
-			mExpendPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.income));
-			mIncomePic.setImageDrawable(getResources().getDrawable(
-					R.drawable.income));
-			mQueryPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.income));
+			mExpend.setTextColor(Color.GREEN);
+			mIncome.setTextColor(Color.GRAY);
+			mQuery.setTextColor(Color.GRAY);
+
+			mExpendEn.setTextColor(Color.GREEN);
+			mIncomeEn.setTextColor(Color.GRAY);
+			mQueryEn.setTextColor(Color.GRAY);
 		}
 
 	}
@@ -93,12 +98,13 @@ public class MainActivity extends FragmentActivity {
 			fragmentTransaction.replace(R.id.my_frame, mIncomeFrag);
 			fragmentTransaction.commit();
 
-			mExpendPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.income));
-			mIncomePic.setImageDrawable(getResources().getDrawable(
-					R.drawable.income));
-			mQueryPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.income));
+			mExpend.setTextColor(Color.GRAY);
+			mIncome.setTextColor(Color.GREEN);
+			mQuery.setTextColor(Color.GRAY);
+
+			mExpendEn.setTextColor(Color.GRAY);
+			mIncomeEn.setTextColor(Color.GREEN);
+			mQueryEn.setTextColor(Color.GRAY);
 		}
 
 	}
@@ -116,12 +122,13 @@ public class MainActivity extends FragmentActivity {
 			fragmentTransaction.replace(R.id.my_frame, mQueryFrag);
 			fragmentTransaction.commit();
 
-			mExpendPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.income));
-			mIncomePic.setImageDrawable(getResources().getDrawable(
-					R.drawable.income));
-			mQueryPic.setImageDrawable(getResources().getDrawable(
-					R.drawable.income));
+			mExpend.setTextColor(Color.GRAY);
+			mIncome.setTextColor(Color.GRAY);
+			mQuery.setTextColor(Color.GREEN);
+
+			mExpendEn.setTextColor(Color.GRAY);
+			mIncomeEn.setTextColor(Color.GRAY);
+			mQueryEn.setTextColor(Color.GREEN);
 		}
 	}
 

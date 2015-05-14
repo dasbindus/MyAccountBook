@@ -22,12 +22,20 @@
             android:layout_height="wrap_content"
             android:text=" "
             android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="元"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/resultList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" >
     </ListView>
 
 </LinearLayout>

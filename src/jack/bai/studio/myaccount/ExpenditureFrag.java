@@ -90,7 +90,7 @@ public class ExpenditureFrag extends Fragment {
 				// 根据ID获取RadioButton的实例
 				RadioButton rb = (RadioButton) view.findViewById(radioButtonId);
 				// 获取选中项的内容
-				Log.e(TAG, "选中的RadioButton是：" + rb.getText());
+				// Log.e(TAG, "选中的RadioButton是：" + rb.getText());
 				rbData = rb.getText().toString();
 			}
 		});

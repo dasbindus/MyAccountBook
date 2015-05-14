@@ -17,16 +17,16 @@
     <RelativeLayout
         android:id="@+id/main_bottom"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:background="@android:drawable/bottom_bar"
+        android:background="#c0c0c0"
         android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:paddingBottom="2dp" >
+            android:paddingBottom="5dp" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -36,25 +36,24 @@
                 android:onClick="onExpendClick"
                 android:orientation="vertical" >
 
-                <ImageView
-                    android:id="@+id/expenditurePic"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                <TextView
+                    android:id="@+id/expenditureTxEn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:clickable="true"
                     android:onClick="onExpendClick"
-                    android:scaleType="matrix"
-                    android:src="@drawable/income" />
+                    android:text="Expend"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/expenditureTx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:gravity="center"
                     android:onClick="onExpendClick"
                     android:text="支出"
                     android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -65,25 +64,24 @@
                 android:onClick="onIncomeClick"
                 android:orientation="vertical" >
 
-                <ImageView
-                    android:id="@+id/incomePic"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                <TextView
+                    android:id="@+id/incomeTxEn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:clickable="true"
                     android:onClick="onIncomeClick"
-                    android:scaleType="matrix"
-                    android:src="@drawable/income" />
+                    android:text="Income"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/incomeTx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:gravity="center"
                     android:onClick="onIncomeClick"
                     android:text="收入"
                     android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -94,25 +92,24 @@
                 android:onClick="onQueryClick"
                 android:orientation="vertical" >
 
-                <ImageView
-                    android:id="@+id/queryPic"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                <TextView
+                    android:id="@+id/queryTxEn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:clickable="true"
                     android:onClick="onQueryClick"
-                    android:scaleType="matrix"
-                    android:src="@drawable/income" />
+                    android:text="Query"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/queryTx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:gravity="center"
                     android:onClick="onQueryClick"
                     android:text="查看"
                     android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
