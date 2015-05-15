@@ -48,7 +48,7 @@ public final class R {
         public static final int query=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0034;
+        public static final int action_settings=0x7f0a0036;
         public static final int afternoonRB=0x7f0a0017;
         public static final int dateTx=0x7f0a0013;
         public static final int eveningRB=0x7f0a0018;
@@ -72,10 +72,12 @@ public final class R {
         public static final int qr_remarks=0x7f0a0029;
         public static final int qr_time=0x7f0a002c;
         public static final int qr_type=0x7f0a0028;
-        public static final int queryAllBtn=0x7f0a0032;
-        public static final int queryBtn=0x7f0a0031;
+        public static final int queryAllBtn=0x7f0a0034;
+        public static final int queryDateBtn=0x7f0a0031;
         public static final int queryDateTx=0x7f0a0030;
-        public static final int queryResultTx=0x7f0a0033;
+        public static final int queryMonthBtn=0x7f0a0033;
+        public static final int queryMonthTx=0x7f0a0032;
+        public static final int queryResultTx=0x7f0a0035;
         public static final int queryTx=0x7f0a0008;
         public static final int queryTxEn=0x7f0a0007;
         public static final int radioGroup1=0x7f0a0015;

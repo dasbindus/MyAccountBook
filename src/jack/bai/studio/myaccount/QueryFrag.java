@@ -2,9 +2,10 @@ package jack.bai.studio.myaccount;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,15 +16,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class QueryFrag extends Fragment {
 
-	private Button queryBtn, queryAllBtn;
-	private EditText q_dateTx;
-	private TextView q_resultTx;
+	private Button queryDateBtn, queryMonthBtn, queryAllBtn;
+	private EditText q_monthTx;
+	private TextView q_dateTx;
+
+	private DatePickerDialog qr_datePickerDialog;
 
 	private MyDBHelper dbHelper;
 
@@ -34,12 +38,31 @@ public class QueryFrag extends Fragment {
 
 		dbHelper = new MyDBHelper(getActivity(), "myAccountBook.db3", 1);
 
-		queryBtn = (Button) view.findViewById(R.id.queryBtn);
+		queryDateBtn = (Button) view.findViewById(R.id.queryDateBtn);
+		queryMonthBtn = (Button) view.findViewById(R.id.queryMonthBtn);
 		queryAllBtn = (Button) view.findViewById(R.id.queryAllBtn);
-		q_dateTx = (EditText) view.findViewById(R.id.queryDateTx);
-		q_resultTx = (TextView) view.findViewById(R.id.queryResultTx);
+		q_dateTx = (TextView) view.findViewById(R.id.queryDateTx);
+		q_monthTx = (EditText) view.findViewById(R.id.queryMonthTx);
 
-		queryBtn.setOnClickListener(new OnClickListener() {
+		q_dateTx.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				qr_datePickerDialog = new DatePickerDialog(getActivity(),
+						new OnDateSetListener() {
+
+							@Override
+							public void onDateSet(DatePicker view, int year,
+									int monthOfYear, int dayOfMonth) {
+								q_dateTx.setText(year + "-" + (monthOfYear + 1)
+										+ "-" + dayOfMonth);
+							}
+						}, 2015, 10, 17);
+				qr_datePickerDialog.show();
+			}
+		});
+
+		queryDateBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -79,6 +102,14 @@ public class QueryFrag extends Fragment {
 					Toast.makeText(getActivity(), "²éÑ¯Îª¿Õ£¡", Toast.LENGTH_SHORT)
 							.show();
 				}
+			}
+		});
+
+		queryMonthBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+
 			}
 		});
 
@@ -150,6 +181,8 @@ public class QueryFrag extends Fragment {
 		if (dbHelper != null) {
 			dbHelper.close();
 		}
+		if (qr_datePickerDialog != null) {
+			qr_datePickerDialog.dismiss();
+		}
 	}
-
 }

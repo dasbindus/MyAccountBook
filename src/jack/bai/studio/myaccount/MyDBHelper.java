@@ -2,8 +2,8 @@ package jack.bai.studio.myaccount;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class MyDBHelper extends SQLiteOpenHelper {
 
@@ -12,8 +12,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 			+ "ex_type TEXT, "
 			+ "ex_remarks TEXT, "
 			+ "ex_money TEXT, "
-			+ "ex_date TEXT, " 
-			+ "ex_time TEXT)";
+			+ "ex_date TEXT, " + "ex_time TEXT)";
 
 	/**
 	 * 
@@ -35,7 +34,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// 版本更新时调用
-		System.out.println("------------- onUpgrate Called ----------------"
+		Log.e(TAG, "------------- onUpgrate Called ----------------"
 				+ oldVersion + "--->" + newVersion);
 	}
 

@@ -10,22 +10,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="日期查询（xxxx-xx-xx）"
+        android:text="日期查询"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/queryDateTx"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#e0e0e0"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:hint="  单击选择日期"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/queryDateBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查询" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="月份查询"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/queryDateTx"
+        android:id="@+id/queryMonthTx"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="输入需要查询的日期"
+        android:hint="输入需要查询的月份"
         android:inputType="date" >
-
-        <requestFocus />
     </EditText>
 
     <Button
-        android:id="@+id/queryBtn"
+        android:id="@+id/queryMonthBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="查询" />

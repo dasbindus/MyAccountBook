@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity {
@@ -23,7 +22,6 @@ public class MainActivity extends FragmentActivity {
 
 	// ----------TAB的头标---------//
 	private TextView mExpend, mExpendEn, mIncome, mIncomeEn, mQuery, mQueryEn;
-	private int currentIndex = 0;
 
 	// ----------三个TAB对应的Fragment-------//
 	private ExpenditureFrag mExpenditureFrag = new ExpenditureFrag();

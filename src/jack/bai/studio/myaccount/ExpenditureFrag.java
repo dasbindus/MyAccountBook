@@ -1,5 +1,7 @@
 package jack.bai.studio.myaccount;
 
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,16 +9,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ExpenditureFrag extends Fragment {
@@ -26,7 +31,9 @@ public class ExpenditureFrag extends Fragment {
 
 	private Spinner mSpinner;
 	private RadioGroup mRadioGroup;
-	private EditText ex_remarksTx, ex_moneyTx, ex_dateTx;
+	private EditText ex_remarksTx, ex_moneyTx;
+	TextView ex_dateTx;
+	private DatePickerDialog datePickerDialog;
 
 	/** 数据库Helper工具 */
 	private MyDBHelper dbHelper;
@@ -50,7 +57,26 @@ public class ExpenditureFrag extends Fragment {
 
 		ex_remarksTx = (EditText) view.findViewById(R.id.remarksTx);
 		ex_moneyTx = (EditText) view.findViewById(R.id.moneyTx);
-		ex_dateTx = (EditText) view.findViewById(R.id.dateTx);
+		ex_dateTx = (TextView) view.findViewById(R.id.dateTx);
+
+		// ----DatePickerDialog---
+		ex_dateTx.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				datePickerDialog = new DatePickerDialog(getActivity(),
+						new OnDateSetListener() {
+
+							@Override
+							public void onDateSet(DatePicker view, int year,
+									int monthOfYear, int dayOfMonth) {
+								ex_dateTx.setText(year + "-"
+										+ (monthOfYear + 1) + "-" + dayOfMonth);
+							}
+						}, 2015, 10, 17);
+				datePickerDialog.show();
+			}
+		});
 
 		// ----------------------Spinner----------------------//
 		mSpinner = (Spinner) view.findViewById(R.id.spinner1);
@@ -73,7 +99,6 @@ public class ExpenditureFrag extends Fragment {
 
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
-				// TODO Auto-generated method stub
 				Toast.makeText(getActivity(), "请选择类别！", Toast.LENGTH_SHORT)
 						.show();
 			}
@@ -105,6 +130,7 @@ public class ExpenditureFrag extends Fragment {
 				ex_data[2] = ex_moneyTx.getText().toString();
 				ex_data[3] = ex_dateTx.getText().toString();
 				ex_data[4] = rbData;
+				// TODO 添加对输入的控制，不能为空，以及格式问题等等
 
 				Log.e(TAG, "写入的数据为: " + ex_data[0] + ',' + ex_data[1] + ','
 						+ ex_data[2] + ',' + ex_data[3] + ',' + ex_data[4]);
@@ -143,6 +169,9 @@ public class ExpenditureFrag extends Fragment {
 		// 退出时关闭dbHelper中的SQLiteDatabase
 		if (dbHelper != null) {
 			dbHelper.close();
+		}
+		if (datePickerDialog != null) {
+			datePickerDialog.dismiss();
 		}
 	}
 }
