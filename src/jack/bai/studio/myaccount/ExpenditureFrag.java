@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -34,6 +33,7 @@ public class ExpenditureFrag extends Fragment {
 	private EditText ex_remarksTx, ex_moneyTx;
 	TextView ex_dateTx;
 	private DatePickerDialog datePickerDialog;
+	private boolean isUpdate = false;
 
 	/** 数据库Helper工具 */
 	private MyDBHelper dbHelper;
@@ -130,26 +130,49 @@ public class ExpenditureFrag extends Fragment {
 				ex_data[2] = ex_moneyTx.getText().toString();
 				ex_data[3] = ex_dateTx.getText().toString();
 				ex_data[4] = rbData;
-				// TODO 添加对输入的控制，不能为空，以及格式问题等等
+				
+				// 检查输入
+				isUpdate = checkInput(ex_data[1], ex_data[2], ex_data[3]);
 
-				Log.e(TAG, "写入的数据为: " + ex_data[0] + ',' + ex_data[1] + ','
-						+ ex_data[2] + ',' + ex_data[3] + ',' + ex_data[4]);
-				// 插入账目记录
-				insertData(dbHelper.getReadableDatabase(), ex_data);
-				// 清空输入
-				clearInput();
-				// 显示提示信息
-				Toast.makeText(getActivity(), "添加支出记录成功！", Toast.LENGTH_SHORT)
-						.show();
+				if (isUpdate) {
+					Log.e(TAG, "写入的数据为: " + ex_data[0] + ',' + ex_data[1] + ','
+							+ ex_data[2] + ',' + ex_data[3] + ',' + ex_data[4]);
+					// 插入账目记录
+					insertData(dbHelper.getReadableDatabase(), ex_data);
+					// 清空输入
+					clearInput();
+					// 显示提示信息
+					Toast.makeText(getActivity(), "添加支出记录成功！",
+							Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 		return view;
 	}
 
+	/**
+	 * 清空输入框
+	 */
 	private void clearInput() {
 		ex_remarksTx.setText("");
 		ex_moneyTx.setText("");
 		ex_dateTx.setText("");
+	}
+
+	/**
+	 * 检查输入是否符合规范
+	 * 
+	 * @param remarks
+	 * @param money
+	 * @param date
+	 * @return
+	 */
+	private boolean checkInput(String remarks, String money, String date) {
+		if ("".equals(remarks) || "".equals(money) || "".equals(date)) {
+			Toast.makeText(getActivity(), "输入不能为空！", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		return true;
 	}
 
 	/**
