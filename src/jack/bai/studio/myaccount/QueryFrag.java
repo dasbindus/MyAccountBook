@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.MonthDisplayHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +29,7 @@ public class QueryFrag extends Fragment {
 	private TextView q_dateTx;
 
 	private DatePickerDialog qr_datePickerDialog;
+	private String monthOfYearStr = "";
 
 	private MyDBHelper dbHelper;
 
@@ -54,7 +56,12 @@ public class QueryFrag extends Fragment {
 							@Override
 							public void onDateSet(DatePicker view, int year,
 									int monthOfYear, int dayOfMonth) {
-								q_dateTx.setText(year + "-" + (monthOfYear + 1)
+								if (monthOfYear < 9) {
+									monthOfYearStr = "0" + (monthOfYear + 1);
+								} else {
+									monthOfYearStr = "" + (monthOfYear + 1);
+								}
+								q_dateTx.setText(year + "-" + monthOfYearStr
 										+ "-" + dayOfMonth);
 							}
 						}, 2015, 10, 17);

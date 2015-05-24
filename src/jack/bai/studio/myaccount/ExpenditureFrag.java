@@ -44,6 +44,7 @@ public class ExpenditureFrag extends Fragment {
 	private String[] ex_data = new String[5];
 	/** RadioButton选中的数据 */
 	private String rbData = "早上";
+	private String monthOfYearStr = "";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,16 +65,22 @@ public class ExpenditureFrag extends Fragment {
 
 			@Override
 			public void onClick(View arg0) {
+
 				datePickerDialog = new DatePickerDialog(getActivity(),
 						new OnDateSetListener() {
 
 							@Override
 							public void onDateSet(DatePicker view, int year,
 									int monthOfYear, int dayOfMonth) {
-								ex_dateTx.setText(year + "-"
-										+ (monthOfYear + 1) + "-" + dayOfMonth);
+								if (monthOfYear < 9) {
+									monthOfYearStr = "0" + (monthOfYear + 1);
+								} else {
+									monthOfYearStr = "" + (monthOfYear + 1);
+								}
+								ex_dateTx.setText(year + "-" + monthOfYearStr
+										+ "-" + dayOfMonth);
 							}
-						}, 2015, 10, 17);
+						}, 2015, 5, 15);
 				datePickerDialog.show();
 			}
 		});
@@ -130,7 +137,7 @@ public class ExpenditureFrag extends Fragment {
 				ex_data[2] = ex_moneyTx.getText().toString();
 				ex_data[3] = ex_dateTx.getText().toString();
 				ex_data[4] = rbData;
-				
+
 				// 检查输入
 				isUpdate = checkInput(ex_data[1], ex_data[2], ex_data[3]);
 
