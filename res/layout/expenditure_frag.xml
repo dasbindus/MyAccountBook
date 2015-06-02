@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="支出类别"
+            android:textColor="#6a5acd"
             android:textSize="20sp" />
 
         <Spinner
@@ -27,8 +28,9 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:text="备注"
+            android:textColor="#6a5acd"
             android:textSize="20sp" />
 
         <EditText
@@ -41,8 +43,9 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:text="消费金额"
+            android:textColor="#6a5acd"
             android:textSize="20sp" />
 
         <EditText
@@ -58,8 +61,9 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:text="消费日期"
+            android:textColor="#6a5acd"
             android:textSize="20sp" />
 
         <TextView
@@ -76,8 +80,9 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:text="消费时间"
+            android:textColor="#6a5acd"
             android:textSize="20sp" />
 
         <RadioGroup

@@ -56,7 +56,7 @@ public final class R {
         public static final int exRemarksTx=0x7f0a0013;
         public static final int expenditureTx=0x7f0a0004;
         public static final int expenditureTxEn=0x7f0a0003;
-        public static final int inDateTx=0x7f0a0026;
+        public static final int incomeDateTx=0x7f0a0026;
         public static final int incomeMoneyTx=0x7f0a0024;
         public static final int incomeRemarksTx=0x7f0a0022;
         public static final int incomeSubmitBtn=0x7f0a0028;

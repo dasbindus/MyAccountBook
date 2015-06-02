@@ -30,6 +30,7 @@ public class QueryFrag extends Fragment {
 
 	private DatePickerDialog qr_datePickerDialog;
 	private String monthOfYearStr = "";
+	private String dayOfMonthStr = "";
 
 	private MyDBHelper dbHelper;
 
@@ -61,8 +62,13 @@ public class QueryFrag extends Fragment {
 								} else {
 									monthOfYearStr = "" + (monthOfYear + 1);
 								}
+								if (dayOfMonth < 10) {
+									dayOfMonthStr = "0" + dayOfMonth;
+								} else {
+									dayOfMonthStr = "" + dayOfMonth;
+								}
 								q_dateTx.setText(year + "-" + monthOfYearStr
-										+ "-" + dayOfMonth);
+										+ "-" + dayOfMonthStr);
 							}
 						}, 2015, 5, 15);
 				qr_datePickerDialog.show();

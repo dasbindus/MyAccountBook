@@ -52,6 +52,7 @@ public class ExpenditureFrag extends Fragment {
 	/** RadioButton选中的数据 */
 	private String rbData = "早上";
 	private String monthOfYearStr = "";
+	private String dayOfMonthStr = "";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,8 +85,13 @@ public class ExpenditureFrag extends Fragment {
 								} else {
 									monthOfYearStr = "" + (monthOfYear + 1);
 								}
+								if (dayOfMonth < 10) {
+									dayOfMonthStr = "0" + dayOfMonth;
+								} else {
+									dayOfMonthStr = "" + dayOfMonth;
+								}
 								ex_dateTx.setText(year + "-" + monthOfYearStr
-										+ "-" + dayOfMonth);
+										+ "-" + dayOfMonthStr);
 							}
 						}, 2015, 5, 15);
 				datePickerDialog.show();
@@ -141,12 +147,16 @@ public class ExpenditureFrag extends Fragment {
 			public void onClick(View arg0) {
 				// 获取用户输入的数据
 				ex_remark = ex_remarksTx.getText().toString();
-				ex_money = Float.parseFloat(ex_moneyTx.getText().toString());
+				if (!("".equals(ex_moneyTx.getText().toString()))) {
+					ex_money = Float
+							.parseFloat(ex_moneyTx.getText().toString());
+				}
 				ex_date = ex_dateTx.getText().toString();
 				ex_time = rbData;
 
-				// TODO 检查输入
-				isUpdate = checkInput(ex_remark, ex_money, ex_date);
+				// 检查输入
+				isUpdate = checkInput(ex_remark, ex_moneyTx.getText()
+						.toString(), ex_date);
 
 				if (isUpdate) {
 					Log.e(TAG, "写入的数据为: " + ex_in_type + ',' + ex_type + ','
@@ -189,8 +199,8 @@ public class ExpenditureFrag extends Fragment {
 	 * @param date
 	 * @return
 	 */
-	private boolean checkInput(String remarks, float money, String date) {
-		if ("".equals(remarks) || money == 0 || "".equals(date)) {
+	private boolean checkInput(String remarks, String money, String date) {
+		if ("".equals(remarks) || "".equals(money) || "".equals(date)) {
 			Toast.makeText(getActivity(), "输入不能为空！", Toast.LENGTH_SHORT).show();
 			return false;
 		}
