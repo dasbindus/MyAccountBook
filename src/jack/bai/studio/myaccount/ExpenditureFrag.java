@@ -2,6 +2,7 @@ package jack.bai.studio.myaccount;
 
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
+import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,7 +32,7 @@ public class ExpenditureFrag extends Fragment {
 	private Spinner mSpinner;
 	private RadioGroup mRadioGroup;
 	private EditText ex_remarksTx, ex_moneyTx;
-	TextView ex_dateTx;
+	private TextView ex_dateTx;
 	private DatePickerDialog datePickerDialog;
 	private boolean isUpdate = false;
 
@@ -40,8 +41,14 @@ public class ExpenditureFrag extends Fragment {
 	/** 提交按钮 */
 	private Button submitBtn = null;
 
-	/** 待写入数据库的数据 */
-	private String[] ex_data = new String[5];
+	// 待写入数据库的数据 //
+	private int ex_in_type = 0; // 0 代表支出
+	private String ex_type;
+	private String ex_remark;
+	private float ex_money = 0;
+	private String ex_date;
+	private String ex_time;
+
 	/** RadioButton选中的数据 */
 	private String rbData = "早上";
 	private String monthOfYearStr = "";
@@ -56,9 +63,9 @@ public class ExpenditureFrag extends Fragment {
 		// 此处使用相对路径即可：数据库文件自动保存在程序的数据文件夹的databases目录下
 		dbHelper = new MyDBHelper(getActivity(), "myAccountBook.db3", 1);
 
-		ex_remarksTx = (EditText) view.findViewById(R.id.remarksTx);
-		ex_moneyTx = (EditText) view.findViewById(R.id.moneyTx);
-		ex_dateTx = (TextView) view.findViewById(R.id.dateTx);
+		ex_remarksTx = (EditText) view.findViewById(R.id.exRemarksTx);
+		ex_moneyTx = (EditText) view.findViewById(R.id.exMoneyTx);
+		ex_dateTx = (TextView) view.findViewById(R.id.exDateTx);
 
 		// ----DatePickerDialog---
 		ex_dateTx.setOnClickListener(new OnClickListener() {
@@ -101,7 +108,7 @@ public class ExpenditureFrag extends Fragment {
 			public void onItemSelected(AdapterView<?> parent, View v,
 					int position, long id) {
 				// 将选中的项目写入ex_data中等待写入数据库
-				ex_data[0] = arrayAdapter.getItem(position);
+				ex_type = arrayAdapter.getItem(position);
 			}
 
 			@Override
@@ -133,19 +140,27 @@ public class ExpenditureFrag extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				// 获取用户输入的数据
-				ex_data[1] = ex_remarksTx.getText().toString();
-				ex_data[2] = ex_moneyTx.getText().toString();
-				ex_data[3] = ex_dateTx.getText().toString();
-				ex_data[4] = rbData;
+				ex_remark = ex_remarksTx.getText().toString();
+				ex_money = Float.parseFloat(ex_moneyTx.getText().toString());
+				ex_date = ex_dateTx.getText().toString();
+				ex_time = rbData;
 
-				// 检查输入
-				isUpdate = checkInput(ex_data[1], ex_data[2], ex_data[3]);
+				// TODO 检查输入
+				isUpdate = checkInput(ex_remark, ex_money, ex_date);
 
 				if (isUpdate) {
-					Log.e(TAG, "写入的数据为: " + ex_data[0] + ',' + ex_data[1] + ','
-							+ ex_data[2] + ',' + ex_data[3] + ',' + ex_data[4]);
+					Log.e(TAG, "写入的数据为: " + ex_in_type + ',' + ex_type + ','
+							+ ex_remark + ',' + ex_money + ',' + ex_date + ','
+							+ ex_time);
+					ContentValues values = new ContentValues();
+					values.put("ex_in_type", ex_in_type);
+					values.put("type", ex_type);
+					values.put("remarks", ex_remark);
+					values.put("money", ex_money);
+					values.put("date", ex_date);
+					values.put("time", ex_time);
 					// 插入账目记录
-					insertData(dbHelper.getReadableDatabase(), ex_data);
+					insertData(dbHelper.getReadableDatabase(), values);
 					// 清空输入
 					clearInput();
 					// 显示提示信息
@@ -174,8 +189,8 @@ public class ExpenditureFrag extends Fragment {
 	 * @param date
 	 * @return
 	 */
-	private boolean checkInput(String remarks, String money, String date) {
-		if ("".equals(remarks) || "".equals(money) || "".equals(date)) {
+	private boolean checkInput(String remarks, float money, String date) {
+		if ("".equals(remarks) || money == 0 || "".equals(date)) {
 			Toast.makeText(getActivity(), "输入不能为空！", Toast.LENGTH_SHORT).show();
 			return false;
 		}
@@ -188,9 +203,9 @@ public class ExpenditureFrag extends Fragment {
 	 * @param db
 	 * @param data
 	 */
-	private void insertData(SQLiteDatabase db, String[] data) {
+	private void insertData(SQLiteDatabase db, ContentValues values) {
 		// 执行插入语句
-		db.execSQL("insert into expend_book values(null, ?, ?, ?, ?, ?)", data);
+		db.insert("account", null, values);
 	}
 
 	@Override

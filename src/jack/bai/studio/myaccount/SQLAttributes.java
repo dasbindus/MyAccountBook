@@ -1,4 +1,5 @@
 package jack.bai.studio.myaccount;
+
 import java.util.HashMap;
 
 public class SQLAttributes {
@@ -7,10 +8,10 @@ public class SQLAttributes {
 	// TODO 设置更完善的SQL语句
 	public static String SQL_CREATE_TABLE_EXPEND = "";
 	public static String SQL_CREATE_TABLE_INCOME = "";
-	public static String SQL_QUERY_ALL = "select * from expend_book";
-	public static String SQL_QUERY_BY_DATE = "select * from expend_book where ex_date=?";
-	public static String SQL_SUM_MONEY_ALL = "select sum(ex_money) from expend_book";
-	public static String SQL_SUM_MONEY_BY_DATE = "select sum(ex_money) from expend_book where ex_date=?";
+	public static String SQL_QUERY_ALL = "select * from account";
+	public static String SQL_QUERY_BY_DATE = "select * from account where date=?";
+	public static String SQL_SUM_MONEY_ALL = "select sum(money) from account";
+	public static String SQL_SUM_MONEY_BY_DATE = "select sum(money) from account where date=?";
 	public static String SQL_SUM_MONEY_BY_DATE_RANGE = "";
 
 	static {

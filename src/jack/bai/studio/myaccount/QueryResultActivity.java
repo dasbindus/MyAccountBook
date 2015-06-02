@@ -31,13 +31,14 @@ public class QueryResultActivity extends Activity {
 				.get("result");
 		String sumMoney = resultData.getString("sum");
 		sumTx.setText(sumMoney);
-		
+
 		// Ìí¼ÓAdapter
 		SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), listData,
-				R.layout.list_item, new String[] { "_id", "ex_type",
-						"ex_remarks", "ex_date", "ex_time", "ex_money" },
-				new int[] { R.id.qr_id, R.id.qr_type, R.id.qr_remarks,
-						R.id.qr_date, R.id.qr_time, R.id.qr_money });
+				R.layout.list_item, new String[] { "_id", "ex_in_type", "type",
+						"remarks", "date", "time", "money" }, new int[] {
+						R.id.qr_id, R.id.qr_ex_in_type, R.id.qr_type,
+						R.id.qr_remarks, R.id.qr_date, R.id.qr_time,
+						R.id.qr_money });
 		resultList.setAdapter(adapter);
 	}
 

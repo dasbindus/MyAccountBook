@@ -64,7 +64,7 @@ public class QueryFrag extends Fragment {
 								q_dateTx.setText(year + "-" + monthOfYearStr
 										+ "-" + dayOfMonth);
 							}
-						}, 2015, 10, 17);
+						}, 2015, 5, 15);
 				qr_datePickerDialog.show();
 			}
 		});
@@ -78,7 +78,7 @@ public class QueryFrag extends Fragment {
 				Log.e("查询句柄：", date_key);
 				// 执行查询
 				Cursor cursor = dbHelper.getReadableDatabase().rawQuery(
-						"select * from expend_book where ex_date=?",
+						"select * from account where date=?",
 						new String[] { date_key });
 				ArrayList<Map<String, String>> result = convertCursor2List(cursor);
 
@@ -125,7 +125,7 @@ public class QueryFrag extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Cursor cursor = dbHelper.getReadableDatabase().rawQuery(
-						"select * from expend_book", null);
+						"select * from account", null);
 				ArrayList<Map<String, String>> result = convertCursor2List(cursor);
 
 				Cursor cursor2 = dbHelper.getReadableDatabase().rawQuery(
@@ -171,11 +171,12 @@ public class QueryFrag extends Fragment {
 			// 将结果集中的数据存入ArrayList中
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("_id", cursor.getString(0));
-			map.put("ex_type", cursor.getString(1));
-			map.put("ex_remarks", cursor.getString(2));
-			map.put("ex_money", cursor.getString(3));
-			map.put("ex_date", cursor.getString(4));
-			map.put("ex_time", cursor.getString(5));
+			map.put("ex_in_type", cursor.getString(1));
+			map.put("type", cursor.getString(2));
+			map.put("remarks", cursor.getString(3));
+			map.put("money", cursor.getString(4));
+			map.put("date", cursor.getString(5));
+			map.put("time", cursor.getString(6));
 			result.add(map);
 		}
 		return result;

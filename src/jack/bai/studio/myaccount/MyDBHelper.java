@@ -8,11 +8,11 @@ import android.util.Log;
 public class MyDBHelper extends SQLiteOpenHelper {
 
 	private static final String TAG = MyDBHelper.class.getSimpleName();
-	final String CREATE_EXTEND_TABLE_SQL = "create table expend_book(_id integer primary key autoincrement, "
-			+ "ex_type TEXT, "
-			+ "ex_remarks TEXT, "
-			+ "ex_money TEXT, "
-			+ "ex_date TEXT, " + "ex_time TEXT)";
+	final String CREATE_EXTEND_TABLE_SQL = "create table account(_id integer primary key autoincrement, "
+			+ "ex_in_type integer, "
+			+ "type TEXT, "
+			+ "remarks TEXT, "
+			+ "money REAL, " + "date TEXT, " + "time TEXT)";
 
 	/**
 	 * 

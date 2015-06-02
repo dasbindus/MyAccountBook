@@ -14,6 +14,12 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class IncomeFrag extends Fragment {
 
 	private Spinner mSpinner;
+	
+	//--Êý¾Ý¿âÄÚÈÝ---//
+	private String in_type;
+	private String in_remark;
+	private float in_money;
+	private String in_date;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,9 +40,7 @@ public class IncomeFrag extends Fragment {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View v,
 					int position, long id) {
-				// TODO Auto-generated method stub
-				Toast.makeText(getActivity(), arrayAdapter.getItem(position),
-						Toast.LENGTH_SHORT).show();
+				in_type = arrayAdapter.getItem(position);
 			}
 
 			@Override
