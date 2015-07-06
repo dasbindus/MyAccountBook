@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity {
@@ -21,7 +22,8 @@ public class MainActivity extends FragmentActivity {
 	private FragmentManager mFragmentManager;
 
 	// ----------TAB的头标---------//
-	private TextView mExpend, mExpendEn, mIncome, mIncomeEn, mQuery, mQueryEn;
+	private TextView mExpend, mExpendEn, mIncome, mIncomeEn, mQuery, mQueryEn,
+			title;
 
 	// ----------三个TAB对应的Fragment-------//
 	private ExpenditureFrag mExpenditureFrag = new ExpenditureFrag();
@@ -31,9 +33,8 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
-
-		setUpActionBar();
 
 		mFragmentManager = getSupportFragmentManager();
 
@@ -45,6 +46,8 @@ public class MainActivity extends FragmentActivity {
 		mIncomeEn = (TextView) findViewById(R.id.incomeTxEn);
 		mQueryEn = (TextView) findViewById(R.id.queryTxEn);
 
+		title = (TextView) findViewById(R.id.actionbar_title);
+
 		View frameView = findViewById(R.id.my_frame);
 		onExpendClick(frameView);
 	}
@@ -55,7 +58,7 @@ public class MainActivity extends FragmentActivity {
 	private void setUpActionBar() {
 		final ActionBar actionbar = getActionBar();
 		actionbar.setHomeButtonEnabled(false);
-		actionbar.setDisplayShowTitleEnabled(false);
+		actionbar.setDisplayShowTitleEnabled(true);
 		actionbar.setDisplayShowHomeEnabled(true);
 	}
 
@@ -79,6 +82,8 @@ public class MainActivity extends FragmentActivity {
 			mExpendEn.setTextColor(Color.GREEN);
 			mIncomeEn.setTextColor(Color.GRAY);
 			mQueryEn.setTextColor(Color.GRAY);
+
+			title.setText("支出");
 		}
 
 	}
@@ -103,6 +108,8 @@ public class MainActivity extends FragmentActivity {
 			mExpendEn.setTextColor(Color.GRAY);
 			mIncomeEn.setTextColor(Color.GREEN);
 			mQueryEn.setTextColor(Color.GRAY);
+
+			title.setText("收入");
 		}
 
 	}
@@ -127,6 +134,8 @@ public class MainActivity extends FragmentActivity {
 			mExpendEn.setTextColor(Color.GRAY);
 			mIncomeEn.setTextColor(Color.GRAY);
 			mQueryEn.setTextColor(Color.GREEN);
+
+			title.setText("查询");
 		}
 	}
 

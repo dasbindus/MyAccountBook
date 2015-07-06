@@ -75,6 +75,7 @@ public class QueryFrag extends Fragment {
 			}
 		});
 
+		//========================== 按照日期查询 ===================================//
 		queryDateBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -118,6 +119,7 @@ public class QueryFrag extends Fragment {
 			}
 		});
 
+		//========================== 按照月份查询 ===================================//
 		queryMonthBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -126,6 +128,7 @@ public class QueryFrag extends Fragment {
 			}
 		});
 
+		//========================== 查询全部 ===================================//
 		queryAllBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
