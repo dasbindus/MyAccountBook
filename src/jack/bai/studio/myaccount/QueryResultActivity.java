@@ -33,10 +33,19 @@ public class QueryResultActivity extends Activity {
 				.get("result");
 		String sumExMoney = resultData.getString("sumExMoney");
 		String sumInMoney = resultData.getString("sumInMoney");
+		if (sumExMoney != null && sumInMoney != null) {// ≈–∂œ≤ªŒ™ø’£¨∑¿÷πø’÷∏’Î“Ï≥£
+			sumTx.setText(""
+					+ (Float.parseFloat(sumInMoney) - Float
+							.parseFloat(sumExMoney)));
+		} else if (sumExMoney != null && sumInMoney == null) {
+			sumTx.setText("" + (0 - Float.parseFloat(sumExMoney)));
+		} else if (sumExMoney == null && sumInMoney != null) {
+			sumTx.setText("" + (Float.parseFloat(sumInMoney) - 0));
+		} else {
+			sumTx.setText(0);
+		}
 		sumExMoneyTx.setText(sumExMoney);
 		sumInMoneyTx.setText(sumInMoney);
-		sumTx.setText(""
-				+ (Float.parseFloat(sumInMoney) - Float.parseFloat(sumExMoney)));
 
 		// ÃÌº”Adapter
 		SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), listData,
