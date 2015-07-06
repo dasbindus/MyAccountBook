@@ -50,7 +50,7 @@ public final class R {
         public static final int query=0x7f020007;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a003f;
+        public static final int action_settings=0x7f0a0040;
         public static final int actionbar_title=0x7f0a0002;
         public static final int afternoonRB=0x7f0a001d;
         public static final int eveningRB=0x7f0a001e;
@@ -78,18 +78,19 @@ public final class R {
         public static final int qr_remarks=0x7f0a0032;
         public static final int qr_time=0x7f0a0035;
         public static final int qr_type=0x7f0a0030;
-        public static final int queryAllBtn=0x7f0a003d;
+        public static final int queryAllBtn=0x7f0a003e;
         public static final int queryDateBtn=0x7f0a003a;
         public static final int queryDateTx=0x7f0a0039;
-        public static final int queryMonthBtn=0x7f0a003c;
-        public static final int queryMonthTx=0x7f0a003b;
-        public static final int queryResultTx=0x7f0a003e;
+        public static final int queryMonthBtn=0x7f0a003d;
+        public static final int queryResultTx=0x7f0a003f;
         public static final int queryTx=0x7f0a000a;
         public static final int queryTxEn=0x7f0a0009;
         public static final int radioGroup1=0x7f0a001b;
         public static final int resultList=0x7f0a0011;
         public static final int spinner1=0x7f0a0013;
         public static final int spinner2=0x7f0a0022;
+        public static final int start_queryMonthTx=0x7f0a003b;
+        public static final int stop_queryMonthTx=0x7f0a003c;
         public static final int submitBtn=0x7f0a0020;
         public static final int submitLay=0x7f0a001f;
         public static final int submitLay2=0x7f0a0029;

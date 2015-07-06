@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class QueryResultActivity extends Activity {
 
 	private ListView resultList;
-	private TextView sumTx;
+	private TextView sumTx, sumExMoneyTx, sumInMoneyTx;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +23,20 @@ public class QueryResultActivity extends Activity {
 		setTitle("查询结果");
 		resultList = (ListView) findViewById(R.id.resultList);
 		sumTx = (TextView) findViewById(R.id.sumTx);
+		sumExMoneyTx = (TextView) findViewById(R.id.sumExpendTx);
+		sumInMoneyTx = (TextView) findViewById(R.id.sumIncomeTx);
 
 		Intent intent = getIntent();
 		Bundle resultData = intent.getExtras();
 		@SuppressWarnings("unchecked")
 		List<Map<String, String>> listData = (List<Map<String, String>>) resultData
 				.get("result");
-		String sumMoney = resultData.getString("sum");
-		sumTx.setText(sumMoney);
+		String sumExMoney = resultData.getString("sumExMoney");
+		String sumInMoney = resultData.getString("sumInMoney");
+		sumExMoneyTx.setText(sumExMoney);
+		sumInMoneyTx.setText(sumInMoney);
+		sumTx.setText(""
+				+ (Float.parseFloat(sumInMoney) - Float.parseFloat(sumExMoney)));
 
 		// 添加Adapter
 		SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), listData,

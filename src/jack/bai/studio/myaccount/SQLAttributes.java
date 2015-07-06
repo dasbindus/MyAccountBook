@@ -8,10 +8,15 @@ public class SQLAttributes {
 	// TODO 设置更完善的SQL语句
 	public static String SQL_CREATE_TABLE_EXPEND = "";
 	public static String SQL_CREATE_TABLE_INCOME = "";
+	/** 查询所有记录 */
 	public static String SQL_QUERY_ALL = "select * from account";
+	/** 按指定日期查询查询 */
 	public static String SQL_QUERY_BY_DATE = "select * from account where date=?";
-	public static String SQL_SUM_MONEY_ALL = "select sum(money) from account";
-	public static String SQL_SUM_MONEY_BY_DATE = "select sum(money) from account where date=?";
+	/** 查询所有总支出 */
+	public static String SQL_SUM_MONEY_ALL = "select sum(money) from account where ex_in_type=0";
+	/** 按指定日期查询总支出 */
+	public static String SQL_SUM_EX_MONEY_BY_DATE = "select sum(money) from account where ex_in_type=0 and date=?";
+	/** 按指定时间段查询总支出 */
 	public static String SQL_SUM_MONEY_BY_DATE_RANGE = "";
 
 	static {

@@ -20,8 +20,8 @@
         android:layout_height="35dp"
         android:background="#e0e0e0"
         android:clickable="true"
-        android:gravity="center_vertical"
-        android:hint="  单击选择日期"
+        android:gravity="center"
+        android:hint="单击选择日期"
         android:textSize="16sp" />
 
     <Button
@@ -39,14 +39,43 @@
         android:textColor="#6a5acd"
         android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/queryMonthTx"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="输入需要查询的月份"
-        android:inputType="date" >
-    </EditText>
+        android:background="#eee"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/start_queryMonthTx"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:background="#e0e0e0"
+            android:clickable="true"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="起始月份"
+            android:textSize="16sp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" To " />
+
+        <TextView
+            android:id="@+id/stop_queryMonthTx"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:background="#e0e0e0"
+            android:clickable="true"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="截止月份"
+            android:textSize="16sp" >
+        </TextView>
+    </LinearLayout>
 
     <Button
         android:id="@+id/queryMonthBtn"

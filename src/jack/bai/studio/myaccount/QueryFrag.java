@@ -25,10 +25,12 @@ import android.widget.Toast;
 public class QueryFrag extends Fragment {
 
 	private Button queryDateBtn, queryMonthBtn, queryAllBtn;
-	private EditText q_monthTx;
+	private TextView q_start_monthTx, q_stop_monthTx;
 	private TextView q_dateTx;
 
 	private DatePickerDialog qr_datePickerDialog;
+	private DatePickerDialog qr_DatePickerDialog_month_start;
+	private DatePickerDialog qr_DatePickerDialog_month_stop;
 	private String monthOfYearStr = "";
 	private String dayOfMonthStr = "";
 
@@ -45,7 +47,8 @@ public class QueryFrag extends Fragment {
 		queryMonthBtn = (Button) view.findViewById(R.id.queryMonthBtn);
 		queryAllBtn = (Button) view.findViewById(R.id.queryAllBtn);
 		q_dateTx = (TextView) view.findViewById(R.id.queryDateTx);
-		q_monthTx = (EditText) view.findViewById(R.id.queryMonthTx);
+		q_start_monthTx = (TextView) view.findViewById(R.id.start_queryMonthTx);
+		q_stop_monthTx = (TextView) view.findViewById(R.id.stop_queryMonthTx);
 
 		q_dateTx.setOnClickListener(new OnClickListener() {
 
@@ -75,7 +78,67 @@ public class QueryFrag extends Fragment {
 			}
 		});
 
-		//========================== 按照日期查询 ===================================//
+		q_start_monthTx.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				qr_DatePickerDialog_month_start = new DatePickerDialog(
+						getActivity(), new OnDateSetListener() {
+
+							@Override
+							public void onDateSet(DatePicker view, int year,
+									int monthOfYear, int dayOfMonth) {
+								if (monthOfYear < 9) {
+									monthOfYearStr = "0" + (monthOfYear + 1);
+								} else {
+									monthOfYearStr = "" + (monthOfYear + 1);
+								}
+								if (dayOfMonth < 10) {
+									dayOfMonthStr = "0" + dayOfMonth;
+								} else {
+									dayOfMonthStr = "" + dayOfMonth;
+								}
+								q_start_monthTx.setText(year + "-"
+										+ monthOfYearStr + "-" + dayOfMonthStr);
+
+							}
+						}, 2015, 5, 1);
+				qr_DatePickerDialog_month_start.show();
+
+			}
+		});
+
+		q_stop_monthTx.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				qr_DatePickerDialog_month_stop = new DatePickerDialog(
+						getActivity(), new OnDateSetListener() {
+
+							@Override
+							public void onDateSet(DatePicker view, int year,
+									int monthOfYear, int dayOfMonth) {
+								if (monthOfYear < 9) {
+									monthOfYearStr = "0" + (monthOfYear + 1);
+								} else {
+									monthOfYearStr = "" + (monthOfYear + 1);
+								}
+								if (dayOfMonth < 10) {
+									dayOfMonthStr = "0" + dayOfMonth;
+								} else {
+									dayOfMonthStr = "" + dayOfMonth;
+								}
+								q_stop_monthTx.setText(year + "-"
+										+ monthOfYearStr + "-" + dayOfMonthStr);
+
+							}
+						}, 2015, 5, 1);
+				qr_DatePickerDialog_month_stop.show();
+
+			}
+		});
+
+		// ================= 按照日期查询 =================
 		queryDateBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -89,20 +152,31 @@ public class QueryFrag extends Fragment {
 						new String[] { date_key });
 				ArrayList<Map<String, String>> result = convertCursor2List(cursor);
 
-				// 查询求和的cursor
 				Cursor cursor2 = dbHelper.getReadableDatabase().rawQuery(
-						SQLAttributes.SQL_SUM_MONEY_BY_DATE,
+						SQLAttributes.SQL_SUM_EX_MONEY_BY_DATE,
 						new String[] { date_key });
-				String sumMoneyByDate = "0";
+				String sumExMoney = "0";
 				while (cursor2.moveToNext()) {
-					sumMoneyByDate = cursor2.getString(0);
+					sumExMoney = cursor2.getString(0);
 				}
-				Log.e("test", "求和为：" + sumMoneyByDate);
+				Log.e("日期查询结果", "总支出：" + sumExMoney);
+
+				Cursor cursor3 = dbHelper
+						.getReadableDatabase()
+						.rawQuery(
+								"select sum(money) from account where ex_in_type=1 and date=?",
+								new String[] { date_key });
+				String sumInMoney = "0";
+				while (cursor3.moveToNext()) {
+					sumInMoney = cursor3.getString(0);
+				}
+				Log.e("日期查询结果", "总收入：" + sumInMoney);
 
 				// 将查询的数据放入Bundle
 				Bundle queryResult = new Bundle();
 				queryResult.putSerializable("result", result);
-				queryResult.putString("sum", sumMoneyByDate);
+				queryResult.putString("sumExMoney", sumExMoney);
+				queryResult.putString("sumInMoney", sumInMoney);
 
 				if (result.size() != 0) {
 					// 跳转QueryResultActivity
@@ -111,7 +185,7 @@ public class QueryFrag extends Fragment {
 					intent.setClass(getActivity(), QueryResultActivity.class);
 					startActivity(intent);
 
-					Log.e("查询结果：", "result大小：" + result.size());
+					Log.e("日期查询结果", "result大小：" + result.size());
 				} else {
 					Toast.makeText(getActivity(), "查询为空！", Toast.LENGTH_SHORT)
 							.show();
@@ -119,16 +193,63 @@ public class QueryFrag extends Fragment {
 			}
 		});
 
-		//========================== 按照月份查询 ===================================//
+		// ========================== 按照月份查询 ================================//
 		queryMonthBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
+				String startMonthKey = q_start_monthTx.getText().toString();
+				String stopMonthKey = q_stop_monthTx.getText().toString();
+				Log.e("查询句柄", startMonthKey + " to " + stopMonthKey);
+				// 执行查询
+				Cursor cursor = dbHelper.getReadableDatabase().rawQuery(
+						"select * from account where date between ? and ?",
+						new String[] { startMonthKey, stopMonthKey });
+				ArrayList<Map<String, String>> result = convertCursor2List(cursor);
 
+				Cursor cursor2 = dbHelper
+						.getReadableDatabase()
+						.rawQuery(
+								"select sum(money) from account where ex_in_type=0 and date between ? and ?",
+								new String[] { startMonthKey, stopMonthKey });
+				String sumExMoney = "0";
+				while (cursor2.moveToNext()) {
+					sumExMoney = cursor2.getString(0);
+				}
+				Log.e("时间段查询", "总支出：" + sumExMoney);
+
+				Cursor cursor3 = dbHelper
+						.getReadableDatabase()
+						.rawQuery(
+								"select sum(money) from account where ex_in_type=1 and date between ? and ?",
+								new String[] { startMonthKey, stopMonthKey });
+				String sumInMoney = "0";
+				while (cursor3.moveToNext()) {
+					sumInMoney = cursor3.getString(0);
+				}
+				Log.e("时间段查询", "总收入：" + sumInMoney);
+
+				// 将查询数据放入Bundle
+				Bundle queryResult = new Bundle();
+				queryResult.putSerializable("result", result);
+				queryResult.putString("sumExMoney", sumExMoney);
+				queryResult.putString("sumInMoney", sumInMoney);
+
+				if (result.size() != 0) {
+					Intent intent = new Intent();
+					intent.putExtras(queryResult);
+					intent.setClass(getActivity(), QueryResultActivity.class);
+					startActivity(intent);
+
+					Log.e("时间段查询", "result大小:" + result.size());
+				} else {
+					Toast.makeText(getActivity(), "查询为空！", Toast.LENGTH_SHORT)
+							.show();
+				}
 			}
 		});
 
-		//========================== 查询全部 ===================================//
+		// ========================== 查询全部 ===================================//
 		queryAllBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -139,15 +260,24 @@ public class QueryFrag extends Fragment {
 
 				Cursor cursor2 = dbHelper.getReadableDatabase().rawQuery(
 						SQLAttributes.SQL_SUM_MONEY_ALL, null);
-				String sumAll = "0";
+				String sumExAll = "0";
 				while (cursor2.moveToNext()) {
-					sumAll = cursor2.getString(0);
+					sumExAll = cursor2.getString(0);
+				}
+
+				Cursor cursor3 = dbHelper.getReadableDatabase().rawQuery(
+						"select sum(money) from account where ex_in_type=1",
+						null);
+				String sumInAll = "0";
+				while (cursor3.moveToNext()) {
+					sumInAll = cursor3.getString(0);
 				}
 
 				// 将查询的数据放入Bundle
 				Bundle queryResult = new Bundle();
 				queryResult.putSerializable("result", result);
-				queryResult.putString("sum", sumAll);
+				queryResult.putString("sumExMoney", sumExAll);
+				queryResult.putString("sumInMoney", sumInAll);
 
 				if (result.size() != 0) {
 					// 跳转QueryResultActivity
@@ -156,7 +286,7 @@ public class QueryFrag extends Fragment {
 					intent.setClass(getActivity(), QueryResultActivity.class);
 					startActivity(intent);
 
-					Log.e("查询全部结果：", "result大小：" + result.size());
+					Log.e("查询全部结果", "result大小：" + result.size());
 				} else {
 					Toast.makeText(getActivity(), "查询为空！", Toast.LENGTH_SHORT)
 							.show();
