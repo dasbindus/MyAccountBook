@@ -1,17 +1,22 @@
 package jack.bai.studio.myaccount;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -137,6 +142,35 @@ public class MainActivity extends FragmentActivity {
 
 			title.setText("查询");
 		}
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_BACK:
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					MainActivity.this);
+			builder.setTitle("退出").setIcon(R.drawable.icon)
+					.setMessage("真的要退出“账本”么？")
+					.setPositiveButton("残忍退出", new OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							finish();
+						}
+					}).setNegativeButton("取消退出", new OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							Toast.makeText(MainActivity.this, "取消退出",
+									Toast.LENGTH_SHORT).show();
+						}
+					}).create().show();
+			break;
+		default:
+			break;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	@Override

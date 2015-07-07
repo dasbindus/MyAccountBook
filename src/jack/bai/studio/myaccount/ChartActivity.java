@@ -13,7 +13,8 @@ public class ChartActivity extends Activity {
 	private WebView webView;
 	private Handler handler;
 
-	@SuppressLint("JavascriptInterface") @Override
+	@SuppressLint("JavascriptInterface")
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -33,10 +34,12 @@ public class ChartActivity extends Activity {
 		settings.setJavaScriptEnabled(true);
 		settings.setSupportZoom(true);
 		settings.setBuiltInZoomControls(true);
-		webView.addJavascriptInterface(new JSinterface(this, handler,webView), "myObject");
-		//加载assets目录下的文件
+		webView.addJavascriptInterface(new JSinterface(this, handler, webView),
+				"myObject");
+		// 加载assets目录下的文件
 		String url = "file:///android_asset/test.html";
-		webView.loadUrl(url);
+		// webView.loadUrl(url);
+		webView.loadUrl("http://www.baidu.com"); // for test
 	}
 
 }
