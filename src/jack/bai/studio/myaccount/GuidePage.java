@@ -30,6 +30,7 @@ public class GuidePage extends Activity {
 				} finally {
 					Intent intent = new Intent();
 					intent.setClass(GuidePage.this, MainActivity.class);
+//					intent.setClass(GuidePage.this, ChartActivity.class);
 					startActivity(intent);
 					finish();
 				}

@@ -8,6 +8,8 @@
         android:minSdkVersion="16"
         android:targetSdkVersion="21" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -28,6 +30,8 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
         </activity>
         <activity android:name=".QueryResultActivity" >
+        </activity>
+        <activity android:name=".ChartActivity" >
         </activity>
     </application>
 
