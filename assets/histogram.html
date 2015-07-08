@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello World</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no" target-densitydpi="device-dpi"/>
+        <meta name="Description" content="" />
+        <script type="text/javascript" src="ichart.1.2.min.js"></script>
+        <script type="text/javascript">
+            var data = new Array();
+            var contact = window.JSInterface.getContacts(); //得到JSInterface中转换出的json字符串
+            eval('data='+contact); //得到json数据
+
+            $(function(){   
+                new iChart.Column3D({
+                    render : 'canvasDiv', //渲染的Dom目标,canvasDiv为Dom的ID
+                    data: data, //绑定数据
+                    title : 'Top 5 Browsers in August 2012', //设置标题
+                    showpercent:true, //显示百分比
+                    decimalsnum:2, 
+                    width : 600, //设置宽度，默认单位为px
+                    height : 300, //设置高度，默认单位为px
+                    align:'left',
+                    offsetx:50,
+                    animation : true,//开启过渡动画
+                    duration_animation_duration:800,//800ms完成动画 
+                    legend : {
+                        enable : true
+                    },
+                    coordinate:{ //配置自定义坐标轴
+                        scale:[{ //配置自定义值轴
+                             width:600,
+                             position:'left', //配置左值轴   
+                             start_scale:0, //设置开始刻度为0
+                             end_scale:40, //设置结束刻度为40
+                             scale_space:8, //设置刻度间距为8
+                             listeners:{ //配置事件
+                                parseText:function(t,x,y){ //设置解析值轴文本
+                                    return {text:t+"%"}
+                                }
+                            }
+                        }]
+                    }
+                }).draw(); //调用绘图方法开始绘图
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id='canvasDiv'></div>
+    </body>
+</html>

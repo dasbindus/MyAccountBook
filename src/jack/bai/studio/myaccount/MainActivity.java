@@ -1,9 +1,10 @@
 package jack.bai.studio.myaccount;
 
-import android.app.ActionBar;
+//import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -57,15 +58,15 @@ public class MainActivity extends FragmentActivity {
 		onExpendClick(frameView);
 	}
 
-	/**
-	 * 初始化ActionBar
-	 */
-	private void setUpActionBar() {
-		final ActionBar actionbar = getActionBar();
-		actionbar.setHomeButtonEnabled(false);
-		actionbar.setDisplayShowTitleEnabled(true);
-		actionbar.setDisplayShowHomeEnabled(true);
-	}
+	// /**
+	// * 初始化ActionBar
+	// */
+	// private void setUpActionBar() {
+	// final ActionBar actionbar = getActionBar();
+	// actionbar.setHomeButtonEnabled(false);
+	// actionbar.setDisplayShowTitleEnabled(true);
+	// actionbar.setDisplayShowHomeEnabled(true);
+	// }
 
 	/**
 	 * 第一个TAB的单击事件
@@ -144,13 +145,24 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
+	/**
+	 * 单击调用图表
+	 * 
+	 * @param v
+	 */
+	public void callChart(View v) {
+		Intent intent = new Intent();
+		intent.setClass(MainActivity.this, ChartActivity.class);
+		startActivity(intent);
+	}
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_BACK:
 			AlertDialog.Builder builder = new AlertDialog.Builder(
 					MainActivity.this);
-			builder.setTitle("退出").setIcon(R.drawable.icon)
+			builder.setTitle("退出").setIcon(R.drawable.ic_quit)
 					.setMessage("真的要退出“账本”么？")
 					.setPositiveButton("残忍退出", new OnClickListener() {
 

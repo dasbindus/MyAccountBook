@@ -29,8 +29,7 @@ public class GuidePage extends Activity {
 					e.printStackTrace();
 				} finally {
 					Intent intent = new Intent();
-//					intent.setClass(GuidePage.this, MainActivity.class);
-					intent.setClass(GuidePage.this, ChartActivity.class);
+					intent.setClass(GuidePage.this, MainActivity.class);
 					startActivity(intent);
 					finish();
 				}
