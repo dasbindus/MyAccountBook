@@ -24,7 +24,15 @@
 				new iChart.Pie2D({
 					render : 'canvasDiv',//渲染的Dom目标,canvasDiv为Dom的ID
 					data: data,//绑定数据
-					title : '消费统计',//设置标题
+					title:{//设置标题
+						text:"Statistical data",
+						color:"#111111",
+						fontsize:20,
+						textAlign:"center",
+						height:30,
+						offsetx:0,
+						offsety:0
+					},
 		            legend:{
 		                  enable:true,
 		                  background_color:"#fefefe",
