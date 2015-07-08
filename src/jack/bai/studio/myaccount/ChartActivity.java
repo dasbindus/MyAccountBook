@@ -3,7 +3,6 @@ package jack.bai.studio.myaccount;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -11,9 +10,8 @@ import android.webkit.WebView;
 public class ChartActivity extends Activity {
 
 	private WebView webView;
-	private Handler handler;
 
-	@SuppressLint("JavascriptInterface")
+	@SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -34,12 +32,11 @@ public class ChartActivity extends Activity {
 		settings.setJavaScriptEnabled(true);
 		settings.setSupportZoom(true);
 		settings.setBuiltInZoomControls(true);
-		webView.addJavascriptInterface(new JSinterface(this, handler, webView),
-				"myObject");
+		webView.addJavascriptInterface(new JSInterface(this), "Android");
 		// 加载assets目录下的文件
 		String url = "file:///android_asset/test.html";
-		// webView.loadUrl(url);
-		webView.loadUrl("http://www.baidu.com"); // for test
+		webView.loadUrl(url);
+		// webView.loadUrl("http://www.baidu.com"); // for test
 	}
 
 }
