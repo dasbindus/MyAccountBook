@@ -39,8 +39,14 @@ public class ChartActivity extends Activity {
 		webView.addJavascriptInterface(
 				new JSInterface(this, mHandler, webView), JSInterface.TAG);
 		// 加载assets目录下的文件
-		String url = "file:///android_asset/histogram.html";
+		// String url = "file:///android_asset/histogram.html";
+		String url = "file:///android_asset/pie_chart.html";
 		webView.loadUrl(url);
 	}
 
+	@Override
+	protected void onDestroy() {
+		webView = null;
+		super.onDestroy();
+	}
 }

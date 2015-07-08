@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello World</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no" target-densitydpi="device-dpi"/>
+        <meta name="Description" content="" />
+        <script type="text/javascript" src="ichart.1.2.min.js"></script>
+        <script type="text/javascript">
+        	//var data = new Array();
+        	//var contact = window.JSInterface.getContacts(); //得到JSInterface中转换出的json字符串
+        	//eval('data='+contact); //得到json数据
+        	
+        	$(function(){
+				var data = [
+				        	{name : 'Other',value : 0.73,color:'#6f83a5'},
+				        	{name : 'IE',value : 35.75,color:'#a5c2d5'},
+				        	{name : 'Chrome',value : 29.84,color:'#cbab4f'},
+				        	{name : 'Firefox',value : 24.88,color:'#76a871'},
+				        	{name : 'Safari',value : 6.77,color:'#9f7961'},
+				        	{name : 'Opera',value : 2.02,color:'#a56f8f'}
+			        	];
+	        	
+				new iChart.Pie2D({
+					render : 'canvasDiv',//渲染的Dom目标,canvasDiv为Dom的ID
+					data: data,//绑定数据
+					title : '消费统计',//设置标题
+		            legend:{
+		                  enable:true,
+		                  background_color:"#fefefe",
+		                  color:"#333333",
+		                  fontsize:11,
+		                  column:6,
+		                  align:"center",
+		                  valign:"bottom",
+		                  offsetx:0,
+		                  offsety:0
+		            },
+					sub_option : {
+						label : {
+							background_color:null,
+							sign:false,//设置禁用label的小图标
+							padding:'0 1',
+							border:{
+								enable:false,
+								color:'#666666'
+							},
+							fontsize:11,
+							fontweight:100,
+							color : '#4572a7'
+						},
+						border : {
+							width : 2,
+							color : '#ffffff'
+						}
+					},
+					animation:true,
+					showpercent:true,
+					decimalsnum:2,
+					width: 380,//默认单位为px
+					height: 400,
+					radius: 80
+				}).draw();
+			});
+        </script>
+	</head>
+	<body>
+        <div id='canvasDiv'></div>
+    </body>
+</html>
