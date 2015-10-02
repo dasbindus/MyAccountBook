@@ -92,11 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/btn_style_green"
-                android:text="提交"
-                android:textColor="#fff" />
+                android:text="提交" />
         </RelativeLayout>
     </LinearLayout>
 
