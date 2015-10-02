@@ -44,6 +44,7 @@ public class QueryResultActivity extends Activity {
 		Intent intent = getIntent();
 		Bundle resultData = intent.getExtras();
 		@SuppressWarnings("unchecked")
+		final
 		List<Map<String, String>> listData = (List<Map<String, String>>) resultData
 				.get("result");
 		String sumExMoney = resultData.getString("sumExMoney");
@@ -63,12 +64,12 @@ public class QueryResultActivity extends Activity {
 		sumInMoneyTx.setText(sumInMoney);
 
 		// 添加Adapter
-		SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), listData,
-				R.layout.list_item, new String[] { "_id", "ex_in_type", "type",
-						"remarks", "date", "time", "money" }, new int[] {
-						R.id.qr_id, R.id.qr_ex_in_type, R.id.qr_type,
-						R.id.qr_remarks, R.id.qr_date, R.id.qr_time,
-						R.id.qr_money });
+		final SimpleAdapter adapter = new SimpleAdapter(getBaseContext(),
+				listData, R.layout.list_item, new String[] { "_id",
+						"ex_in_type", "type", "remarks", "date", "time",
+						"money" }, new int[] { R.id.qr_id, R.id.qr_ex_in_type,
+						R.id.qr_type, R.id.qr_remarks, R.id.qr_date,
+						R.id.qr_time, R.id.qr_money });
 		resultList.setAdapter(adapter);
 
 		// 长按事件
@@ -78,6 +79,10 @@ public class QueryResultActivity extends Activity {
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				final int pos = position;
+				TextView idView = (TextView) view.findViewById(R.id.qr_id);
+				String _id = idView.getText().toString();
+				final String args[] = { _id };
+				Log.d("test", "_id => " + args[0]);
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						QueryResultActivity.this);
@@ -95,14 +100,18 @@ public class QueryResultActivity extends Activity {
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
-								Toast.makeText(QueryResultActivity.this, "删除",
-										Toast.LENGTH_SHORT).show();
-								String args[] = { String.valueOf(pos + 1) };
-								Log.d("test", "_id : " + args[0]);
 								SQLiteDatabase db = dbHelper
 										.getReadableDatabase();
-								int result = db
-										.delete("account", "_id=?", args);
+								int resultcode = db.delete("account", "_id=?",
+										args);
+								Log.d("test", "resultcode => " + resultcode);
+								if (1 == resultcode) {
+									Toast.makeText(QueryResultActivity.this,
+											"删除成功！", Toast.LENGTH_SHORT).show();
+									listData.remove(pos);
+									adapter.notifyDataSetChanged();
+								}
+
 							}
 						}).create().show();
 
