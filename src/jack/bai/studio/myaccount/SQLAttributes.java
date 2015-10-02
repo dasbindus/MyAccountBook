@@ -18,6 +18,8 @@ public class SQLAttributes {
 	public static String SQL_SUM_EX_MONEY_BY_DATE = "select sum(money) from account where ex_in_type=0 and date=?";
 	/** 按指定时间段查询总支出 */
 	public static String SQL_SUM_MONEY_BY_DATE_RANGE = "";
+	/** 删除指定的记录 */
+	public static String SQL_DELETE_CLICK_ITEM = "delete from account where _id=1";
 
 	static {
 		sqlMap.put("query_by_date", SQL_QUERY_BY_DATE);
