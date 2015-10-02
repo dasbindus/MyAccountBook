@@ -200,7 +200,7 @@ public class ExpenditureFrag extends Fragment {
 	 * @return
 	 */
 	private boolean checkInput(String remarks, String money, String date) {
-		if ("".equals(remarks) || "".equals(money) || "".equals(date)) {
+		if ("".equals(money) || "".equals(date)) {
 			Toast.makeText(getActivity(), "输入不能为空！", Toast.LENGTH_SHORT).show();
 			return false;
 		}

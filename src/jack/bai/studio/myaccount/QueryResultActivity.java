@@ -44,8 +44,7 @@ public class QueryResultActivity extends Activity {
 		Intent intent = getIntent();
 		Bundle resultData = intent.getExtras();
 		@SuppressWarnings("unchecked")
-		final
-		List<Map<String, String>> listData = (List<Map<String, String>>) resultData
+		final List<Map<String, String>> listData = (List<Map<String, String>>) resultData
 				.get("result");
 		String sumExMoney = resultData.getString("sumExMoney");
 		String sumInMoney = resultData.getString("sumInMoney");
